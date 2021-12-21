@@ -1,10 +1,6 @@
 <template>
   <v-app id="inspire">
-    <v-app-bar
-      app
-      color="white"
-      flat
-    >
+    <v-app-bar app color="white" flat>
       <v-container class="py-0 fill-height">
         <!--<v-avatar
           class="mr-10"
@@ -15,17 +11,13 @@
         <v-list-item>
             dataviz sncf
       </v-list-item>-->
-      
+
         <v-spacer></v-spacer>
 
-        <v-btn
-          v-for="link in links"
-          :key="link"
-          text
-        >
+        <v-btn v-for="link in links" :key="link" text>
           {{ link }}
         </v-btn>
-         
+
         <v-responsive max-width="260">
           <v-text-field
             dense
@@ -76,11 +68,21 @@
           <router-view></router-view>
 
           <v-col>
-            <v-sheet
-              min-height="70vh"
-              rounded="lg"
-            >
-              <!--  -->
+            <v-sheet min-height="70vh" rounded="lg">
+              <!--  
+              <v-list dense nav>
+                <v-list-item v-for="station in stations" :key="station" text>
+                  <v-list-item-content>
+                    <v-list-item-title> {{ station }}</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </v-list>
+              -->
+              <div v-for="(station, idx) in stations" v-bind:key="idx">
+                <div v-for="(stat, id) in station" v-bind:key="id">
+                  {{ stat }}
+                </div>
+              </div>
             </v-sheet>
           </v-col>
         </v-row>
@@ -90,14 +92,22 @@
 </template>
 
 <script>
-  export default {
-    data: () => ({
-      links: [
-        'Home',
-        'Data',
-        'Objects',
-        'About',
-      ],
-    }),
-  }
+//https://data.sncf.com/api/datasets/1.0/search/?q=
+
+import axios from "axios";
+
+export default {
+  data: () => ({
+    links: ["Home", "Data", "Objects", "About"],
+    stations: [],
+  }),
+
+  mounted: function () {
+    axios
+      .get("https://data.sncf.com/api/datasets/1.0/search/?q=")
+      .then((response) => {
+        this.stations = response.data;
+      });
+  },
+};
 </script>
