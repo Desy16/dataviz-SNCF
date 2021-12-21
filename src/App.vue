@@ -13,10 +13,10 @@
         ></v-avatar>
 
         <v-list-item>
-          <v-list-item-title class="text-h6">
-            DATAVIZ SNCF
-          </v-list-item-title>
+            dataviz sncf
       </v-list-item>-->
+      
+        <v-spacer></v-spacer>
 
         <v-btn
           v-for="link in links"
@@ -25,9 +25,7 @@
         >
           {{ link }}
         </v-btn>
-
-        <v-spacer></v-spacer>
-
+         
         <v-responsive max-width="260">
           <v-text-field
             dense
@@ -51,6 +49,7 @@
                   :key="n"
                   link
                 >
+                
                   <v-list-item-content>
                     <v-list-item-title>
                       List Item {{ n }}
@@ -74,6 +73,8 @@
             </v-sheet>
           </v-col>-->
 
+          <router-view></router-view>
+
           <v-col>
             <v-sheet
               min-height="70vh"
@@ -94,7 +95,7 @@
       links: [
         'Home',
         'Data',
-        'Objects found',
+        'Objects',
         'About',
       ],
     }),
