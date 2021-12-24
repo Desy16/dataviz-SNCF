@@ -1,113 +1,46 @@
 <template>
-  <v-app id="inspire">
-    <v-app-bar app color="white" flat>
-      <v-container class="py-0 fill-height">
-        <!--<v-avatar
-          class="mr-10"
-          color="grey darken-1"
-          size="32"
-        ></v-avatar>
-
-        <v-list-item>
-            dataviz sncf
-      </v-list-item>-->
-
-        <v-spacer></v-spacer>
-
-        <v-btn v-for="link in links" :key="link" text>
-          {{ link }}
-        </v-btn>
-
-        <v-responsive max-width="260">
-          <v-text-field
-            dense
-            flat
-            hide-details
-            rounded
-            solo-inverted
-          ></v-text-field>
-        </v-responsive>
-      </v-container>
-    </v-app-bar>
-
-    <v-main class="grey lighten-3">
-      <v-container>
-        <v-row>
-          <!--<v-col cols="2">
-            <v-sheet rounded="lg">
-              <v-list color="transparent">
-                <v-list-item
-                  v-for="n in 5"
-                  :key="n"
-                  link
-                >
-                
-                  <v-list-item-content>
-                    <v-list-item-title>
-                      List Item {{ n }}
-                    </v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-
-                <v-divider class="my-2"></v-divider>
-
-                <v-list-item
-                  link
-                  color="grey lighten-4"
-                >
-                  <v-list-item-content>
-                    <v-list-item-title>
-                      Refresh
-                    </v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list>
-            </v-sheet>
-          </v-col>-->
-
-          <router-view></router-view>
-
-          <v-col>
-            <v-sheet min-height="70vh" rounded="lg">
-              <!--  
-              <v-list dense nav>
-                <v-list-item v-for="station in stations" :key="station" text>
-                  <v-list-item-content>
-                    <v-list-item-title> {{ station }}</v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list>
-              -->
-              <div v-for="(station, idx) in stations" v-bind:key="idx">
-                <div v-for="(stat, id) in station" v-bind:key="id">
-                  {{ stat }}
-                </div>
-              </div>
-            </v-sheet>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-main>
-  </v-app>
+  <div id="app">
+    <Menu />
+    <Home />
+    <Data />
+    <Objects />
+    <About />
+  </div>
 </template>
 
 <script>
 //https://data.sncf.com/api/datasets/1.0/search/?q=
+//https://data.sncf.com/api/records/1.0/search/?dataset=referentiel-gares-voyageurs
 
-import axios from "axios";
+//import axios from "axios";
+import Menu from "./views/layout/Menu.vue";
+import Home from "./views/pages/Home.vue";
+import Data from "./views/pages/Data.vue";
+import Objects from "./views/pages/Objects.vue";
+import About from "./views/pages/About.vue";
 
 export default {
-  data: () => ({
-    links: ["Home", "Data", "Objects", "About"],
-    stations: [],
-  }),
-
-  mounted: function () {
-    axios
-      .get("https://data.sncf.com/api/datasets/1.0/search/?q=")
-      .then((response) => {
-        this.stations = response.data;
-      });
+  name: "app",
+  components: {
+    Menu,
+    Home,
+    Data,
+    Objects,
+    About,
   },
+  //data: () => ({
+  //links: ["Home", "Data", "Objects", "About"],
+  // stationsData: [{}],
+  // }),
+
+  //mounted: function () {
+  //axios
+  //.get(
+  //"https://data.sncf.com/api/records/1.0/search/?dataset=referentiel-gares-voyageurs"
+  //)
+  //.then((response) => {
+  // this.stationsData = response.data;
+  //});
+  //},
 };
 </script>
