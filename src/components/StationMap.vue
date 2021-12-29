@@ -1,84 +1,79 @@
 <template>
   <div class="map">
+    <h2>Center is {{ currentCenter }}, zoom is {{ currentZoom }}</h2>
     <l-map
       :zoom="zoom"
       :center="center"
       ref="map"
-      @update:center="centerUpdated"
-      @update:zoom="zoomUpdated"
+      @update:center="centerUpdate"
+      @update:zoom="zoomUpdate"
     >
       <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-      <l-marker :lat-lng="markers[0].coords"></l-marker>
-      <l-marker :lat-lng="markers[1].coords"></l-marker>
-      <l-marker :lat-lng="markers[2].coords"></l-marker>
+      <l-marker
+        v-for="station in stations"
+        v-bind:key="station.recordid"
+        :lat-lng="
+          latLng(
+            station.fields.latitude_entreeprincipale_wgs84,
+            station.fields.longitude_entreeprincipale_wgs84
+          )
+        "
+      >
+        <l-icon :icon-size="iconSize" :icon-url="icon"> </l-icon>
+
+        <l-popup
+          >{{ station.fields.rg_libelle }} <br />
+          {{ station.fields.commune_libellemin }},
+          {{ station.fields.adresse_cp }}
+          {{ station.fields.departement_libellemin }}
+        </l-popup>
+      </l-marker>
     </l-map>
   </div>
 </template>
 
 <script>
-import {
-  LMap,
-  LTileLayer,
-  LMarker,
-  LIcon,
-  LPopup,
-  LControlLayers,
-} from "vue2-leaflet";
+import { LMap, LTileLayer, LMarker, LPopup, LIcon } from "vue2-leaflet";
+import station from "../assets/img/icons/station.svg";
 
 export default {
   name: "StationMap",
+  props: {
+    stations: [],
+  },
   components: {
     LMap,
     LTileLayer,
     LMarker,
-    LIcon,
     LPopup,
-    LControlLayers,
+    LIcon,
   },
 
   data() {
     return {
+      zoom: 10,
+      center: L.latLng(46.232192999999995, 2.209666999999996),
+      currentZoom: 10,
+      currentCenter: L.latLng(46.232192999999995, 2.209666999999996),
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-      center: [49.18385033631969, -0.3694965685656017],
-      zoom: 12,
       attribution:
         '&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      markers: [
-        {
-          id: 1,
-          coords: [49.201126689560205, -0.40760539219653635],
-          imageUrl: "station.svg",
-          adress: "12 avenue de la grande cavée 14000 caen",
-        },
-        {
-          id: 2,
-          coords: [49.20740750409239, -0.3729297939872819],
-          imageUrl: "station.svg",
-          adress: "22 avenue de la grande cavée 14000 caen",
-        },
-        {
-          id: 3,
-          coords: [49.191928343508216, -0.33070109753138127],
-          imageUrl: "station.svg",
-          adress: "24 avenue de la grande cavée 14000 caen",
-        },
-        {
-          id: 4,
-          coords: [49.17173085290733, -0.3698398893685574],
-          imageUrl: "station.svg",
-          adress: "28 avenue de la grande cavée 14000 caen",
-        },
-      ],
+      marker: L.latLng(46.232192999999995, 2.209666999999996),
+      icon: station,
+      iconSize: [20, 20],
     };
   },
 
   methods: {
-    centerUpdated(center) {
+    latLng: function (lat, lng) {
+      return L.latLng(lat, lng);
+    },
+    centerUpdate(center) {
       this.center = center;
       console.log("CENTER");
       console.log(this.center);
     },
-    zoomUpdated(zoom) {
+    zoomUpdate(zoom) {
       this.zoom = zoom;
       console.log("ZOOM");
       console.log(this.zoom);

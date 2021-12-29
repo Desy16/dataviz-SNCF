@@ -1,21 +1,22 @@
 <template>
   <v-row>
-    <!--StationList-->
+    <!--StationList
     <v-col cols="4">
       <v-sheet rounded="lg">
-        <!--<StationList :stations="stations" />-->
-      </v-sheet>
-    </v-col>
-
-    <!--<v-col cols="8">
-      <v-sheet rounded="lg">
-        <StationMap />
+        <StationList :stations="stations" />
       </v-sheet>
     </v-col>-->
 
-    <div>
-      <StationMap />
-    </div>
+    <!--StationList-->
+    <v-col cols="8">
+      <v-sheet rounded="lg">
+        <StationMap :stations="stations" />
+      </v-sheet>
+    </v-col>
+
+    <!--<div>
+      <StationMap :stations="stations" />
+    </div>-->
   </v-row>
 </template>
 
@@ -25,7 +26,7 @@ import StationList from "./StationList.vue";
 import StationMap from "./StationMap.vue";
 
 const res_url =
-  "https://data.sncf.com/api/records/1.0/search/?dataset=referentiel-gares-voyageurs&rows=5";
+  "https://data.sncf.com/api/records/1.0/search/?dataset=referentiel-gares-voyageurs&rows=100";
 
 export default {
   name: "Station",
