@@ -1,5 +1,12 @@
 <template>
-  <div class="data">
-    <h1>This is a data page</h1>
+  <div class="data-container">
+    <h1>Les données en CSV ou en JSON</h1>
+    <p>Cette page est en construction</p>
   </div>
 </template>
+
+<style scoped>
+.data-container {
+  padding: 100px 65px;
+}
+</style>
