@@ -1,4 +1,4 @@
-# 🏆 vue-dataviz 
+# 🏆 dataviz-vue
 
 This is a data visualization application with the dataSNCF API. It allows you to view the data in the form of a map, graph or table. The aim is to present them to travelers or users in a clear and simple way.
 
@@ -6,7 +6,7 @@ This is a data visualization application with the dataSNCF API. It allows you to
 
 - Display a specific number of stations on a map
 
-![Home view]
+![Home view](./imgs/stations_map.png)
 
 - Display the frequency of travelers based on a number of years
 
@@ -101,6 +101,6 @@ Leaflet is an open-source JavaScript library for mobile-friendly interactive map
 D3js is a JavaScript library for manipulating documents based on data. D3 helps you bring data to life using HTML, SVG, and CSS. D3’s emphasis on web standards gives you the full capabilities of modern browsers without tying yourself to a proprietary framework, combining powerful visualization components and a data-driven approach to DOM manipulation. [More](https://d3js.org/)
 
 
-### Authors
+### 👨 Authors
 
 [Desty Mpassi, Mohamedlemin Guewad](https://github.com/Desy16/dataviz-vue.git)
