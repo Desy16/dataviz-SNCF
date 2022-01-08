@@ -17,6 +17,9 @@
           hide-details
           rounded
           solo-inverted
+          v-model="q"
+          @input="onSearchValueChange"
+          @keydown.enter="onSearchSubmit"
         ></v-text-field>
       </v-responsive>
     </v-container>
@@ -26,11 +29,24 @@
 <script>
 export default {
   name: "NavBar",
-  props: {
-    msg: String,
+
+  watch: {
+    $route() {
+      this.q = this.$route.query.q;
+      console.log(this.q + " NavBar");
+    },
   },
+
+  methods: {
+    onSearchValueChange() {},
+    onSearchSubmit() {
+      this.$router.push({ path: `/search?q=${this.q}` });
+    },
+  },
+
   data() {
     return {
+      q: "",
       drawer: false,
       items: [
         { title: "Home", to: "/" },

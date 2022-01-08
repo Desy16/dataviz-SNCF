@@ -62,7 +62,7 @@
 import { getLostObjects } from "../../api";
 import { D3LineChart } from "vue-d3-charts";
 
-const NO_STATION_SELECTED = "Stations";
+const NO_STATION_SELECTED = "Gares";
 
 export default {
   components: {

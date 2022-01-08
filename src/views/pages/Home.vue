@@ -5,6 +5,9 @@
       <v-row>
         <!--Station-->
         <Station />
+
+        <!--Search
+        <Search />-->
       </v-row>
     </v-container>
   </v-main>
@@ -12,6 +15,7 @@
 
 <script>
 import Station from "../../components/Station.vue";
+//import Search from "./Search.vue";
 
 export default {
   name: "Home",

@@ -27,6 +27,15 @@
               :config="chartConfig"
             ></D3BarChart>
           </div>
+
+          <div class="station-pane-section" v-if="false">
+            <h3 class="pane-section-header">Trains annulés/en retard</h3>
+            <D3BarChart
+              v-if="showSelectedStationFrequentations"
+              :datum="selectedStation.frequentations"
+              :config="chartConfig"
+            ></D3BarChart>
+          </div>
         </div>
       </div>
     </div>
@@ -104,8 +113,7 @@ export default {
     },
   },
   async mounted() {
-    this.stations = await getStations(20);
-    console.log("bood");
+    this.stations = await getStations(100);
     await this.refreshStationDetails();
   },
   methods: {
@@ -247,7 +255,7 @@ export default {
 }
 
 .station-pane-section-header {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .map-container {
