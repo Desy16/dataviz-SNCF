@@ -7,10 +7,9 @@
       </div>
       <v-spacer></v-spacer>
 
-      <v-btn v-for="link in links" :key="link" text>
-        {{ link }}
+      <v-btn v-for="item in items" :key="item.title" :to="item.to" text>
+        {{ item.title }}
       </v-btn>
-      <!--<router-view></router-view>-->
       <v-responsive max-width="260">
         <v-text-field
           dense
@@ -30,9 +29,17 @@ export default {
   props: {
     msg: String,
   },
-  data: () => ({
-    links: ["Home", "Data", "Objects", "About"],
-  }),
+  data() {
+    return {
+      drawer: false,
+      items: [
+        { title: "Home", to: "/" },
+        { title: "Data", to: "/data" },
+        { title: "Objects", to: "/objects" },
+        { title: "About", to: "/about" },
+      ],
+    };
+  },
 };
 </script>
 

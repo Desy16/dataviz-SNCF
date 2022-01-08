@@ -4,7 +4,7 @@ import Home from '../views/pages/Home.vue';
 
 Vue.use(VueRouter)
 
-const nameApp = 'DATAVIZ SNCF';
+const NAME_APP = 'DATAVIZ SNCF';
 
 const routes = [
   {
@@ -12,7 +12,15 @@ const routes = [
     name: 'Home',
     component: Home,
     meta: {
-      title: 'Home - ' + nameApp
+      title: 'Home - ' + NAME_APP
+    }
+  },
+  {
+    path: '/details',
+    name: 'Home',
+    component: Home,
+    meta: {
+      title: 'Home - ' + NAME_APP
     }
   },
   {
@@ -23,7 +31,7 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "data" */ '../views/pages/Data.vue'),
     meta: {
-      title: 'Data - ' + nameApp
+      title: 'Data - ' + NAME_APP
     }
   },
   {
@@ -34,7 +42,7 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "objects" */ '../views/pages/Objects.vue'),
     meta: {
-      title: 'Objects found - ' + nameApp
+      title: 'Objects found - ' + NAME_APP
     }
   },
   {
@@ -45,7 +53,7 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/pages/About.vue'),
     meta: {
-      title: 'About - ' + nameApp
+      title: 'About - ' + NAME_APP
     }
   },
   {
@@ -56,12 +64,14 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "NotFound" */ '../views/pages/NotFound.vue'),
     meta: {
-      title: '404 not found - ' + nameApp
+      title: '404 not found - ' + NAME_APP
     }
   }
 ]
 
 const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
   routes
 })
 
