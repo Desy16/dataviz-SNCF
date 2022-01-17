@@ -42,7 +42,7 @@ export async function getStationFrequentations(stationUICCode) {
 }
 
 export async function getTrainRegularityByStation(query, rows = 1000) {
-  const TRAIN_REGULARITY = `?dataset=regularite-mensuelle-tgv-aqst&q=${query.toString().toLowerCase()}&sort=periode&rows=${rows}`
+  const TRAIN_REGULARITY = `?dataset=regularite-mensuelle-tgv-aqst&q=${query.toString().toLowerCase()}&rows=${rows}`
   const response = await axios.get(API_HOST_BASE + TRAIN_REGULARITY)
   const regularities = response.data.records.map(record => new TrainRegularity(record.fields))
 

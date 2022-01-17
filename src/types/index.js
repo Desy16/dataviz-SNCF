@@ -75,7 +75,7 @@ export class Frequentation {
 }
 
 export class TrainRegularity {
-  constructor(record) {
+  constructor(fields) {
     const monthLabels = {
       1: "Janvier",
       2: "Février",
@@ -90,14 +90,19 @@ export class TrainRegularity {
       11: "Novembre",
       12: "Décembre",
     }
-    const monthLabel = monthLabels[record.mois]
-    this.period = `${monthLabel} ${record.annee}`
-    this.startStation = record.gare_de_depart_en_majuscules_sans_espaces_si_tiret
-    this.stopStation = record.gare_d_arrivee_en_majuscules_sans_espaces_si_tiret
-    this.lateTrainsCount = record.nombre_de_trains_en_retard_au_depart
-    this.canceledTrainsCount = record.nombre_de_trains_annules
-    this.averageDelayAtDeparture = `${parseInt(record.retard_moyen_des_trains_en_retard_au_depart_min)} minute(s)`
-    this.averageDelayAtArrival = `${parseInt(record.retard_moyen_de_tous_les_trains_a_l_arrivee_min)} minute(s)`
-    this.averageTripDuration = `${parseInt(record.duree_moyenne_du_trajet_min_telle_que_prevue)} minute(s)`
+
+    const yearMonth = fields.date
+    const year = yearMonth.split('-')[0]
+    const month = yearMonth.split('-')[1]
+
+    const monthLabel = monthLabels[parseInt(month)]
+    this.period = `${monthLabel} ${parseInt(year)}`
+    this.startStation = fields.gare_depart
+    this.stopStation = fields.gare_arrivee
+    this.lateTrainsCount = fields.nb_train_depart_retard
+    this.canceledTrainsCount = fields.nb_annulation
+    this.averageDelayAtDeparture = `${parseInt(fields.retard_moyen_depart)} minute(s)`
+    this.averageDelayAtArrival = `${parseInt(fields.retard_moyen_arrivee)} minute(s)`
+    this.averageTripDuration = `${parseInt(fields.duree_moyenne)} minute(s)`
   }
 }

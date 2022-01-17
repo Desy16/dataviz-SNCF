@@ -1,7 +1,7 @@
 <template>
   <div class="search-container">
     <p class="search-description">
-      Trains annulés/en retard au départ ou à destination de:
+      Trains annulés/en retard au départ ou à destination de :
       <em
         ><strong>{{ q }}</strong></em
       >
@@ -97,7 +97,6 @@ export default {
   watch: {
     $route() {
       this.q = this.$route.query.q;
-      console.log(this.q + " route");
       this.refreshSearchResults();
     },
   },
@@ -112,8 +111,7 @@ export default {
 
   async mounted() {
     this.q = this.$route.query.q;
-    console.log(this.q + " mounted");
-    this.refreshSearchResults();
+    await this.refreshSearchResults();
   },
 };
 </script>

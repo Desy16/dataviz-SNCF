@@ -103,4 +103,4 @@ D3js is a JavaScript library for manipulating documents based on data. D3 helps 
 
 ### 👨 Authors
 
-[Desty Mpassi, Mohamedlemin Guewad](https://github.com/Desy16/dataviz-vue.git)
+[Desty Mpassi](https://github.com/Desy16/dataviz-vue.git)
